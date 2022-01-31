@@ -6,6 +6,8 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
  
  
 Authors in chronological order of contribution:
+Lorie Zhang
+Author 1
 Tim Riedel
 Author 2
  
@@ -17,11 +19,10 @@ Timothy Riedel
 triedel@utexas.edu
  
 Brief Description of Goal of Code:
-blah, blah, blah,
+To make a survey app for finding if you have allergies or the cold.
  
 Known Issues:
-blah, blah, blah, blah
-
+Symptoms of allergies and cold.
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
 -->
@@ -36,19 +37,26 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
 
 <script>
-        var allergy_count = 0;
-        var cold_count = 0;
+        var recycle_count = 0;
+        var trash_count = 0;
+	var recyclePercent = 0;
+	var trashPercent = 0;
+	
 
-
-        function allergyAdd(){
-            allergy_count = allergy_count + 1;
-		alert(allergy_count);
+        function recycleAdd(){
+            recycle_count = recycle_count + 1;
 
         }
 
-        function coldAdd(){
-            cold_count = cold_count + 1;
+        function trashAdd(){
+            trash_count = trash_count + 1;
         }
+	
+	function getResults(){
+		var recyclePercent = 100 * ((recycle_count)/(recycle_count + trash_count)); 
+		var trashPercent = 100 * ((trash_count)/(recycle_count + trash_count)); 
+		document.getElementById("results").innerHTML = "Probability it is recycle =" + recyclePercent + "%" + "<br> Probability it is trash =" + trashPercent +"%";
+	}
 
   </script>
 
@@ -78,11 +86,13 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
 <body>
 <div id="header" class="w3-container w3-flat-carrot">
-	<h1>Cold or Allergies?</h1>
+	<h1>Recycle or Trash?</h1>
+	<--!Change title name to the purpose of this app-->
 </div>
 	
 <div id="content" class="w3-container">
-	<p>Are you feeling like you might have a cold but wonder if it is allergies. Answer a few short questions to find out!</p>
+	<p>Are you having trouble figuring out which item is best to recycle or throw away? Answer a few short questions to find out!</p>
+	<!--Changed introduction to transition into the app questions-->
 	
 	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a>
 	
@@ -96,7 +106,12 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	</div>
 	
     	<div id="content" class="w3-container">
-        <p>Put Question 1 content here.</p>    
+        	<p>Is it made of paper?</p>    
+		<a href="#two"  onclick="recycleAdd();" class="w3-btn w3-blue w3-round-large">Yes</a>
+		<a href="#two"  onclick="trashAdd();" class="w3-btn w3-blue w3-round-large">No</a>
+		<!--href takes you to that page, onlick is the button, class is the CSS3 of the button(HTML5)-->
+		<!--I copied this coding for Questions 2-6 & change yes/no depending on what's recycle and trash-->
+		<!--Changed questions relevant to the recycle/trash topic-->
     	</div>
 </div>
 
@@ -106,10 +121,76 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	</div>
 	
 	<div id="content" class="w3-container">
-		<p>Content of page 2 goes here.</p>
+		<p>Is it made of cotton?</p>
+		<a href="#three"  onclick="trashAdd();" class="w3-btn w3-blue w3-round-large">Yes</a>
+		<a href="#three"  onclick="recycleAdd();" class="w3-btn w3-blue w3-round-large">No</a>
+	</div>
+</div>	
+	
+<div class="page" id="three">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 3</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Does it have batteries?</p>
+		<a href="#four"  onclick="trashAdd();" class="w3-btn w3-blue w3-round-large">Yes</a>
+		<a href="#four"  onclick="recycleAdd();" class="w3-btn w3-blue w3-round-large">No</a>
 	</div>
 </div>	
 
+<div class="page" id="four">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 4</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Is it made of cardboard?</p>
+		<a href="#five"  onclick="recycleAdd();" class="w3-btn w3-blue w3-round-large">Yes</a>
+		<a href="#five"  onclick="trashAdd();" class="w3-btn w3-blue w3-round-large">No</a>
+	</div>
+</div>	
+	
+<div class="page" id="five">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 5</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Is it made of glass?</p>
+		<a href="#six"  onclick="recycleAdd();" class="w3-btn w3-blue w3-round-large">Yes</a>
+		<a href="#six"  onclick="trashAdd();" class="w3-btn w3-blue w3-round-large">No</a>
+	</div>
+</div>	
+
+<div class="page" id="six">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Question 6</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p>Is it made of foam?</p>
+		<a href="#seven"  onclick="trashAdd();" class="w3-btn w3-blue w3-round-large">Yes</a>
+		<a href="#seven"  onclick="recycleAdd();" class="w3-btn w3-blue w3-round-large">No</a>
+	</div>
+</div>	
+	
+<div class="page" id="seven">
+	<div class="w3-container w3-flat-carrot">
+		<h1>Your Results!!</h1>
+	</div>
+	
+	<div id="content" class="w3-container">
+		<p id="results"></p>
+		<p>Yay! You are done! Click Calculate Results to get your results!</p>
+		<a onclick="getResults();" class="w3-btn w3-blue w3-round-large">Calculate Results</a>
+		<!--The function calculates percentage and the var is short for the summarized variables-->
+		<a href="#header"  onclick="();" class="w3-btn w3-black w3-round-large">Return back</a>
+		<!-- return button works but when you retake the survey, you have to reclick "calculate results" to refresh the calculation-->
+		<img src="pic_trulli.jpg" alt="Trulli" width="500" height="333"> 
+	</div>
+</div>
+	
 <footer class="w3-bottom w3-container w3-flat-carrot">
 	<p>DIY!</p>
 </footer>
